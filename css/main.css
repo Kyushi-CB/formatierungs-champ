@@ -9,38 +9,50 @@ body {
     align-items: center;
     background-color: #222;
 }
+
+/* GLOBAL */
 svg {
-    fill: #aaa;
+    fill: #999;
 }
-.wrapper-drives {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    min-width: 500px;
-    width: 90vw;
-    height: auto;
-}
-.wrapper-sata, .wrapper-nvme {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
-    width: 90%;
-    height: 20vh;
-    min-height: 150px;
-    max-height: 500px;
-    margin: 5vw 0 5vw 0;
-}
-.button-sata, .button-nvme,  #check-all, #format-all {
-    width: 10vw;
-    height: 10vw;
+button {
+    width: 15vmin;
+    height: 15vmin;
     min-width: 100px;
     max-width: 200px;
     min-height: 100px;
     max-height: 200px;
     background: none;
     border: none;
+}
+/* //GLOBAL// */
+
+/* BASIC LAYOUT*/
+.wrapper-drives {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    min-width: 500px;
+    width: 100vw;
+    height: 100vh;
+}
+.wrapper-sata, .wrapper-nvme {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    min-height: 150px;
+    max-height: 500px;
+}
+#format-all {
+    width: 18vmin;
+    height: 20vmin;
+    min-width: 150px;
+    max-width: 250px;
+    min-height: 150px;
+    max-height: 250px;
     cursor: pointer;
     transition: all .1s ease-in-out;
     -webkit-transition: all .1s ease-in-out;
@@ -48,7 +60,7 @@ svg {
     -ms-transition: all .1s ease-in-out;
     -o-transition: all .1s ease-in-out;
 }
-.button-sata:hover, .button-nvme:hover,  #check-all:hover, #format-all:hover {
+#format-all:hover {
     transform: scale(1.1);
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
@@ -59,15 +71,4 @@ svg {
     -moz-transition: all .1s ease-in-out;
     -ms-transition: all .1s ease-in-out;
     -o-transition: all .1s ease-in-out;
-}
-nav {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-    width: 10vw;
-    min-width: 100px;
-    max-width: 150px;
-    background-color: #222;
-    height: 100%;
 }
