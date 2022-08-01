@@ -31,7 +31,6 @@ button {
     flex-direction: column;
     flex-wrap: nowrap;
     color: #999;
-    overflow: hidden;
 }
 span {
     margin: 0.5vmin;
