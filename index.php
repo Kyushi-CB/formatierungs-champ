@@ -12,7 +12,7 @@
 exec('lsblk -nd --output PATH | grep "sd"', $drivePath);
 $driveType = array();
 $driveName = array();
-$driveSize = array();
+$driveIsFormatted = array();
 ?>
     <body>
         <div class="wrapper-drives">
@@ -24,10 +24,15 @@ $driveSize = array();
                     $getType = "HDD";
                 }
                 $getName = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Model Number" | sed -e "s/^[\t]*Model Number:\s*//g"');
-                $getSize = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Model Number" | sed -e "s/^[\t]*Model Number:\s*//g"');
+                $getFormattingStatus = shell_exec('blkid | grep' . $drivePath);
+                if($getFormattingStatus == "") {
+                    $getFormattingStatus = "Formatiert";
+                } else {
+                    $getFormattingStatus = "Unformatiert";
+                }
                 array_push($driveType, $getType);
                 array_push($driveName, $getName);
-                array_push($driveSize, $getSize);
+                array_push($driveIsFormatted, $getFormattingStatus);
 
                 echo 
                     '<button class="button-sata" id="sata-' . $i . '" type="button">
