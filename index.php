@@ -9,22 +9,27 @@
     <title>Formatierungs Champ</title>
 </head>
 <?php
-exec('lsblk -nd --output PATH | grep "sd"', $arrDrives);
-#                $getType = shell_exec('sudo hdparm -I ' . $getDrives[0] . ' | grep ""');
-#                print_r($getType);
+exec('lsblk -nd --output PATH | grep "sd"', $drivePath);
+$driveType = array();
+$driveName = array();
+$driveSize = array();
 ?>
     <body>
         <div class="wrapper-drives">
             <?php
-            $arrType=array();
-            for ($i = 0; $i < count($arrDrives); $i++) {
-                $getType = shell_exec('sudo hdparm -I ${arrDrives[$i]} | grep "Solid State Device" | sed -e "s/Nominal Media Rotation Rate: Solid State Device/SSD/g"');
-                array_push($arrType, $getType);
-                echo $arrDrives[$i] . $arrType[$i];
+            
+            for ($i = 0; $i < count($drivePath); $i++) {
+                $getType = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Solid State Device" | sed -e "s/Nominal Media Rotation Rate: Solid State Device/SSD/g"');
+                $getName = shell_exec('sudo hdparm -I ' . $drivepath[$i] . ' | grep "Model Number" | sed -e "s/^[\t]*Model Number:\s*//g"');
+                array_push($driveType, $getType);
+                array_push($driveName, $getName);
                 echo 
                     '<button class="button-sata" id="sata-' . $i . '" type="button">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 228 228" style="enable-background:new 0 0 228 228;" xml:space="preserve"><path d="M20,0v228h188V0H20z M200,220H28V8h172V220z"/><path d="M76.532,145.118l-20.924,10.62c-1.912,0.648-3.707,1.578-5.342,2.77c-8.92,6.48-10.906,19.012-4.426,27.934c3.908,5.379,10.016,8.238,16.209,8.238c4.074,0,8.188-1.238,11.73-3.812c1.637-1.192,3.076-2.609,4.281-4.226l31.504-31.604l-0.05,0.822c1.482,0.09,2.978,0.14,4.486,0.14c38.598,0,70-31.402,70-70c0-38.598-31.402-70-70-70c-38.598,0-70,31.402-70,70C44,110.168,56.34,132.323,76.532,145.118z M72.182,181.207c-0.15,0.152-0.289,0.312-0.414,0.488c-0.746,1.035-1.654,1.945-2.692,2.699c-5.356,3.902-12.871,2.703-16.764-2.656c-3.889-5.352-2.697-12.871,2.658-16.762c1.037-0.754,2.182-1.336,3.4-1.726c0.201-0.066,0.398-0.144,0.588-0.242l63.482-32.219L72.182,181.207z M114,24c34.188,0,62,27.812,62,62c0,33.27-26.361,60.426-59.284,61.862l29.04-29.132c1.389-1.391,1.558-3.586,0.404-5.176c-1.154-1.59-3.287-2.098-5.047-1.215l-56.104,28.476C64.647,130.02,52,109.035,52,86C52,51.812,79.812,24,114,24z"/><path d="M114,112c14.336,0,26-11.664,26-26s-11.664-26-26-26S88,71.664,88,86S99.664,112,114,112z M114,68c9.926,0,18,8.074,18,18s-8.074,18-18,18s-18-8.074-18-18S104.074,68,114,68z"/><circle cx="188" cy="20" r="8"/><circle cx="188" cy="208" r="8"/><circle cx="40" cy="20" r="8"/><circle cx="40" cy="208" r="8"/><circle cx="60" cy="176" r="8"/></svg>
-                    </button>';
+                        <span>' . $driveType[$i] . '</span>
+                        <span>' . $driveName[$i] . '</span>
+                        <span>' . $driveSize[$i] . '</span>
+                     </button>';
             }
             
             ?>
