@@ -25,6 +25,18 @@ button {
     background: none;
     border: none;
     margin: 5vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    color: #999;
+    box-sizing: content-box;
+}
+span {
+    margin: 0.5vmin;
+    width: max-content;
+    height: max-content;
 }
 /* //GLOBAL// */
 
