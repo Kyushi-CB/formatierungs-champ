@@ -20,7 +20,7 @@ $driveSize = array();
             
             for ($i = 0; $i < count($drivePath); $i++) {
                 $getType = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Solid State Device" | sed -e "s/Nominal Media Rotation Rate: Solid State Device/SSD/g"');
-                $getName = shell_exec('sudo hdparm -I ' . $drivepath[$i] . ' | grep "Model Number" | sed -e "s/^[\t]*Model Number:\s*//g"');
+                $getName = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Model Number" | sed -e "s/^[\t]*Model Number:\s*//g"');
                 array_push($driveType, $getType);
                 array_push($driveName, $getName);
                 echo 
