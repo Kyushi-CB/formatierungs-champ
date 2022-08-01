@@ -18,10 +18,10 @@ svg {
 button {
     width: 15vmin;
     height: 15vmin;
-    min-width: 50px;
-    max-width: 200px;
-    min-height: 50px;
-    max-height: 200px;
+    min-width: 150px;
+    max-width: 300px;
+    min-height: 150px;
+    max-height: 300px;
     background: none;
     border: none;
     margin: 5vmin;
@@ -31,7 +31,7 @@ button {
     flex-direction: column;
     flex-wrap: nowrap;
     color: #999;
-    box-sizing: content-box;
+    overflow: hidden;
 }
 span {
     margin: 0.5vmin;
@@ -59,10 +59,10 @@ span {
 #format-all {
     width: 20vmin;
     height: 20vmin;
-    min-width: 100px;
-    max-width: 300px;
-    min-height: 100px;
-    max-height: 300px;
+    min-width: 200px;
+    max-width: 400px;
+    min-height: 200px;
+    max-height: 400px;
     cursor: pointer;
     transition: all .1s ease-in-out;
     -webkit-transition: all .1s ease-in-out;
