@@ -32,7 +32,7 @@ $driveIsFormatted = array();
                     $getType = "N/A";
                 }
 
-                $getName = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Model Number"');
+                $getName = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Model Number" | sed -e "s/^[\t]*Model Number:\s*//g"');
                 
                 if ($getName == null) {
                     $getName = "N/A";
