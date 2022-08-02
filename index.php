@@ -22,19 +22,20 @@ $driveIsFormatted = array();
             
             for ($i = 0; $i < count($drivePath); $i++) {
 
-                $getType = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Solid State Device" | sed -e "s/^[\t]*Nominal Media Rotation Rate:\s*/SSD/g"');
-
-                if ($getType != "" && $getType != "Solid State Device") {
+                $getType = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Nominal Media"');
+                $getType = preg_replace("/\s+/", "", $getType);
+                if ($getType != "" && $getType != "NominalMediaRotationRate:SolidStateDevice") {
                     $getType = "HDD";
-                } elseif ($getType == "Solid State Device") {
+                } else if ($getType == "NominalMediaRotationRate:SolidStateDevice") {
                     $getType = "SSD";
                 } else {
                     $getType = "N/A";
                 }
 
-                $getName = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Model Number" | sed -e "s/^[\t]*Model Number:\s*//g"');
-                if ($getName != "") {
-                    $getName == "N/A";
+                $getName = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Model Number"');
+                
+                if ($getName == null) {
+                    $getName = "N/A";
                 }
                 $getFormattingStatus = shell_exec('blkid | grep "' . $drivePath[$i] . '"');
                 if ($getFormattingStatus == "") {
