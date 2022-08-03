@@ -28,8 +28,10 @@ function getDrives() {
         $getFormattingStatus = shell_exec('blkid | grep "' . $drivePath[$i] . '"');
         if ($getFormattingStatus == "") {
             $getFormattingStatus = "Formatiert";
-        } else {
+        } else if ($getFormattingStatus =! "" && $getType && $getName != "N/A"){
             $getFormattingStatus = "Unformatiert";
+        } else {
+            $getFormattingStatus = "N/A";
         }
         array_push($driveType, $getType);
         array_push($driveName, $getName);

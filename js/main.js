@@ -8,23 +8,23 @@ function updateDrives() {
     var getSVG = document.querySelectorAll('svg');
 
     for (let i=0; i < getDrives.length; i++) {
-        if (getType[i].textContent || getName[i].textContent || getIsFormatted[i].textContent == "N/A") {
+        if (getType[i].textContent || getName[i].textContent == "N/A") {
             getSVG[i].style.fill = '#f22';
             getType[i].style.color = '#999';
             getName[i].style.color = '#999';
             getIsFormatted[i].style.color = '#999';
         }
-        if (getIsFormatted[i].textContent == "Formatiert") {
+        if (getIsFormatted[i].textContent == "Formatiert" && getType[i].textContent && getName[i].textContent != "N/A") {
             getSVG[i].style.fill = '#2f2';
             getType[i].style.color = '#fff';
             getName[i].style.color = '#fff';
             getIsFormatted[i].style.color = '#fff';
         }
-        if (getIsFormatted[i].textContent == "Unformatiert" ){
+        if (getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent && getName[i].textContent != "N/A"){
             getSVG[i].style.fill = '#fff';
             getType[i].style.color = '#fff';
             getName[i].style.color = '#fff';
-            getIsFormatted[i].style.color = '#fff';          
+            getIsFormatted[i].style.color = '#fff';         
         }
     }
 }
