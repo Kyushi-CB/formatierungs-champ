@@ -1,10 +1,12 @@
-var getDrives = document.getElementsByClassName('button-sata');
-var getType = document.getElementsByClassName('drive-type');
-var getName = document.getElementsByClassName('drive-name');
-var getIsFormatted = document.getElementsByClassName('drive-is-formatted');
-var getSVG = document.querySelectorAll('svg');
+
 
 function updateDrives() {
+    var getDrives = document.getElementsByClassName('button-sata');
+    var getType = document.getElementsByClassName('drive-type');
+    var getName = document.getElementsByClassName('drive-name');
+    var getIsFormatted = document.getElementsByClassName('drive-is-formatted');
+    var getSVG = document.querySelectorAll('svg');
+
     for (let i=0; i < getDrives.length; i++) {
         if (getType[i].textContent || getName[i].textContent || getIsFormatted[i].textContent == "N/A") {
             getSVG[i].style.fill = '#f22';
@@ -28,15 +30,32 @@ function updateDrives() {
 }
 const url = "./backend/get-drives.php";
 let drives = document.querySelector(".wrapper-drives");
+
 let request = new XMLHttpRequest();
-    request.open('GET', url);
-    request.responseType = 'JSON';
-    request.send();
-
-let data;
-
+request.open('GET', url);
+request.responseType = 'text';
+request.send();
 request.onload = function() {
+    let data;
     data = request.response;
     drives.innerHTML = data;
     updateDrives();
 }
+
+function requestDrives() {
+    let request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.responseType = 'text';
+    request.send();
+    request.onload = function() {
+        let data;
+        data = request.response;
+        drives.innerHTML = data;
+        updateDrives();
+    }
+ 
+}
+
+setInterval(function () { 
+    requestDrives();
+}, 5000);
