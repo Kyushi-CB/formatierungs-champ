@@ -61,7 +61,7 @@ function getDrivesForm(&$drivePath, &$driveForm) {
     for ($i = 0; $i < count($drivePath); $i++) {
 
         # get Partitioning to String with parted
-        $getForm = shell_exec('sudo parted ' . $drivePath[$i] . ' print | grep Partition | sed "s/^[\t]*Partition Table:\s*//g"');
+        $getForm = shell_exec('sudo parted ' . $drivePath[$i] . ' print | grep "Partition" | sed "s/^[\t]*Partition Table:\s*//g"');
         
         # check if drive has Partition-Table, is unknown (formatted) or null (indicates drive is corrupted or removed)
         if ($getForm == "unknown") {

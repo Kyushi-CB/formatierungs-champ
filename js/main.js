@@ -28,11 +28,12 @@ const svgSSD = '<svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometr
 async function displayDrives() {
     await fetchDrives();
     for (let i = 0; i < drivePath.length; i++) {
+        wrapperDrives.innerHTML = "";
         if (driveType[i] == "HDD" || driveType[i] == "N/A") {
-            wrapperDrives.innerHTML = '<button class="button-sata" id="sata-' + i + '" type="button">' + svgHDD + '<span class="drive-type">' + driveType[i] + '</span><span class="drive-name">' + driveName[i] + '</span><span class="drive-is-formatted">' + driveForm[i] + '</span></button>';
+            wrapperDrives.innerHTML += '<button class="button-sata" id="sata-' + i + '" type="button">' + svgHDD + '<span class="drive-type">' + driveType[i] + '</span><span class="drive-name">' + driveName[i] + '</span><span class="drive-is-formatted">' + driveForm[i] + '</span></button>';
         }
         if (driveType[i] == "SSD") {
-            wrapperDrives.innerHTML = '<button class="button-sata" id="sata-' + i + '" type="button">' + svgSSD + '<span class="drive-type">' + driveType[i] + '</span><span class="drive-name">' + driveName[i] + '</span><span class="drive-is-formatted">' + driveForm[i] + '</span></button>';
+            wrapperDrives.innerHTML += '<button class="button-sata" id="sata-' + i + '" type="button">' + svgSSD + '<span class="drive-type">' + driveType[i] + '</span><span class="drive-name">' + driveName[i] + '</span><span class="drive-is-formatted">' + driveForm[i] + '</span></button>';
         }
     }
 }
