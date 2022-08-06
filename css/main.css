@@ -48,20 +48,22 @@ span {
     flex-wrap: wrap;
 }
 .wrapper-format {
-    position: absolute;
-    bottom: 0;
+   
+  
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #format-all {
-    width: 20vmin;
-    height: 20vmin;
+    width: 15vmin;
+    height: 15vmin;
     min-width: 200px;
-    max-width: 400px;
+    max-width: 350px;
     min-height: 200px;
-    max-height: 400px;
+    max-height: 350px;
     cursor: pointer;
     transition: all .1s ease-in-out;
     -webkit-transition: all .1s ease-in-out;
