@@ -46,15 +46,15 @@ span {
     align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
+    height: auto;
+    width: 100%;
 }
 .wrapper-format {
-   
-  
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
 
 #format-all {
