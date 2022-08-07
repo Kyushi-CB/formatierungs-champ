@@ -1,6 +1,7 @@
 <?php
 
-# get path of current available drives on sd*
+# TODO: NVME support currently missing only sata on /dev/sd*
+# get array of paths for current available drives on /dev/sd* 
 exec('lsblk -nd --output PATH | grep "sd"', $drivePath);
 
 # declare empty Arrays for storing Type, Name and formatting status, gets cleared on each function call
@@ -18,14 +19,14 @@ function getDrivesType(&$drivePath, &$driveType) {
         # get Nominal Media Rotation Rate output with hdparm to string
         $getType = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Nominal Media"');
 
-        #remove all tabs/space chars in String
-        $getType = preg_replace("/\s+/", "", $getType);
+        #remove \n\r\t\v\x00 chars in string on line start and end
+        $getType = trim($getType);
 
         #check if SSD, non SSD or N/A
-        if ($getType != "" && $getType != "NominalMediaRotationRate:SolidStateDevice") {
+        if ($getType != "" && $getType != "Nominal Media Rotation Rate: Solid State Device") {
             $getType = "HDD";
         } 
-        if ($getType == "NominalMediaRotationRate:SolidStateDevice") {
+        if ($getType == "Nominal Media Rotation Rate: Solid State Device") {
             $getType = "SSD";
         } 
         if ($getType == "" || $getType == null) {
@@ -44,8 +45,11 @@ function getDrivesName(&$drivePath, &$driveName) {
     for ($i = 0; $i < count($drivePath); $i++) {
 
        # get Modelnumber/Name output to String
-       $getName = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Model Number" | sed -e "s/^[\t]*Model Number:\s*//g"');
-        
+       $getName = shell_exec('sudo hdparm -I ' . $drivePath[$i] . ' | grep "Model Number" | sed "s/Model Number://g"');
+
+       #remove \n\r\t\v\x00 chars in string on line start and end
+        $getName = trim($getName);
+
        # check if Name = "" or null 
        if ($getName == null || $getName == "") {
            $getName = "N/A";
@@ -61,13 +65,16 @@ function getDrivesForm(&$drivePath, &$driveForm) {
     for ($i = 0; $i < count($drivePath); $i++) {
 
         # get Partitioning to String with parted
-        $getForm = shell_exec('sudo parted ' . $drivePath[$i] . ' print | grep "Partition" | sed "s/^[\t]*Partition Table:\s*//g"');
+        $getForm = shell_exec('sudo parted ' . $drivePath[$i] . ' print | grep "Partition" | sed "s/Partition Table://g"');
         
+        #remove \n\r\t\v\x00 chars in string on line start and end
+        $getForm = trim($getForm);
+
         # check if drive has Partition-Table, is unknown (formatted) or null (indicates drive is corrupted or removed)
         if ($getForm == "unknown") {
             $getForm = "Formatiert";
         }
-        if ($getForm != "unknown" && $getForm != "" || $getForm != null) {
+        if ($getForm != "Formatiert" && $getForm != "" || $getForm != "Formatiert" && $getForm != null) {
             $getForm = "Unformatiert";
         }
         if ($getForm != "unknown" && $getForm == "" || $getForm == null) {
