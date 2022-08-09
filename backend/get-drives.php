@@ -3,6 +3,7 @@
 # TODO: NVME support currently missing only sata on /dev/sd*
 # get array of paths for current available drives on /dev/sd* 
 exec('lsblk -nd --output PATH | grep "sd"', $drivePath);
+#$drivePath = array("/dev/sda", "/dev/sdb", "/dev/sdc", "/dev/sdd"); # TODO: ONLY FOR DEBUG!
 
 # declare empty Arrays for storing Type, Name and formatting status, gets cleared on each function call
 $driveType = array();
