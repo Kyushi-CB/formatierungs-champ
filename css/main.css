@@ -49,6 +49,7 @@ span {
     height: auto;
     width: 100%;
 }
+  
 .wrapper-format {
     width: 100%;
     height: 100%;
@@ -82,4 +83,14 @@ span {
     -moz-transition: all .1s ease-in-out;
     -ms-transition: all .1s ease-in-out;
     -o-transition: all .1s ease-in-out;
+}
+/* //BASIC LAYOUT// */
+
+/* DYNAMIC CHANGES */
+.wrapper-drives button.error svg {
+    fill: #c11;
+} 
+
+.wrapper-drives button.formatted svg {
+    fill: #1c1;
 }
