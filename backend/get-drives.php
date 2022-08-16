@@ -3,12 +3,12 @@
 # TODO: NVME support currently missing only sata on /dev/sd*
 # get array of paths for current available drives on /dev/sd* 
 exec('lsblk -nd --output PATH | grep "sd"', $drivePath);
-#$drivePath = array("/dev/sda", "/dev/sdb", "/dev/sdc", "/dev/sdd"); # TODO: ONLY FOR DEBUG!
+
 
 # declare empty Arrays for storing Type, Name and formatting status, gets cleared on each function call
 $driveType = array();
 $driveName = array();
-$driveForm = array();
+$driveStatus = array();
 $output = array();
 
 # get drive type
@@ -61,41 +61,53 @@ function getDrivesName(&$drivePath, &$driveName) {
 }
 
 #get drive formatting status
-function getDrivesForm(&$drivePath, &$driveForm) {
+function getDrivesForm(&$drivePath, &$driveStatus) {
     # iterate through current drive paths 
     for ($i = 0; $i < count($drivePath); $i++) {
 
         # get Partitioning to String with parted
-        $getForm = shell_exec('sudo parted ' . $drivePath[$i] . ' print | grep "Partition" | sed "s/Partition Table://g"');
+        $getStatus = shell_exec('sudo parted ' . $drivePath[$i] . ' print | grep "Partition" | sed "s/Partition Table://g"');
         
         #remove \n\r\t\v\x00 chars in string on line start and end
-        $getForm = trim($getForm);
+        $getStatus = trim($getStatus);
 
         # check if drive has Partition-Table, is unknown (formatted) or null (indicates drive is corrupted or removed)
-        if ($getForm == "unknown") {
-            $getForm = "Formatiert";
+        if ($getStatus == "unknown") {
+            $getStatus = "Formatiert";
         }
-        if ($getForm != "Formatiert" && $getForm != "" || $getForm != "Formatiert" && $getForm != null) {
+        if ($getStatus != "Formatiert" && $getStatus != "" || $getStatus != "Formatiert" && $getStatus != null) {
             $getForm = "Unformatiert";
         }
-        if ($getForm != "unknown" && $getForm == "" || $getForm == null) {
-            $getForm = "N/A";
+        if ($getStatus != "unknown" && $getStatus == "" || $getStatus == null) {
+            $getStatus = "N/A";
         }
         # push String output to Array on each iteration
-        array_push($driveForm, $getForm);
+        array_push($driveStatus, $getStatus);
     }
 }
 
 # push all Arrays in Output Array
-function pushOutput(&$output, &$drivePath, &$driveType, &$driveName, &$driveForm) {
-    array_push($output, $drivePath, $driveType, $driveName, $driveForm);
+function pushOutput(&$output, &$drivePath, &$driveType, &$driveName, &$driveStatus) {
+     
+    for ($i = 0; $i < count($drivePath); $i++) {
+        
+        $obj = array(
+            "Id" => str_replace("/dev/", "", $drivePath[$i]),
+            "Path" => $drivePath[$i],
+            "Type" => $driveType[$i],
+            "Name" => $driveName[$i],
+            "Status" => $driveStatus[$i]
+        );
+        array_push($output, $obj);
+    }
+    
 }
 
 # callback functions
 getDrivesType($drivePath, $driveType);
 getDrivesName($drivePath, $driveName);
-getDrivesForm($drivePath, $driveForm);
-pushOutput($output, $drivePath, $driveType, $driveName, $driveForm);
+getDrivesForm($drivePath, $driveStatus);
+pushOutput($output, $drivePath, $driveType, $driveName, $driveStatus);
 
 # export final output as json
 echo json_encode($output);
