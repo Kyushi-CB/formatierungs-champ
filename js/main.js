@@ -139,9 +139,10 @@ function setDriveState() {
 
 
     for (let i = 0; i < drivesAvailable.length; i++) {
-        if (getType[i].textContent || getName[i].textContent == "N/A") {
+        if (getType[i].textContent == "N/A" || getName[i].textContent == "N/A") {
             drivesAvailable[i].classList.remove("formatted");
             drivesAvailable[i].classList.add("error");
+            console.log("the fuk");
         }
         if (getIsFormatted[i].textContent == "Formatiert" && getType[i].textContent && getName[i].textContent != "N/A") {
             drivesAvailable[i].classList.add("formatted");
