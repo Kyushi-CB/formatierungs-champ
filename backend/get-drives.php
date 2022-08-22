@@ -76,7 +76,7 @@ function getDrivesForm(&$drivePath, &$driveStatus) {
             $getStatus = "Formatiert";
         }
         if ($getStatus != "Formatiert" && $getStatus != "" || $getStatus != "Formatiert" && $getStatus != null) {
-            $getForm = "Unformatiert";
+            $getStatus = "Unformatiert";
         }
         if ($getStatus != "unknown" && $getStatus == "" || $getStatus == null) {
             $getStatus = "N/A";
