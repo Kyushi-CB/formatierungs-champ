@@ -5,7 +5,7 @@ body {
     height: 100vh;
     overflow: hidden;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
     background-color: #2e2e2e;
@@ -46,13 +46,13 @@ span {
     align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
-    height: auto;
+    height: 50vh;
     width: 100%;
 }
   
 .wrapper-format {
     width: 100%;
-    height: 100%;
+    height: 50vh;
     display: flex;
     justify-content: center;
     align-items: flex-end;

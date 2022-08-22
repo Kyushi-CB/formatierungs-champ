@@ -34,7 +34,12 @@
     animation: drives-load 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: #fff transparent transparent transparent;
     -webkit-animation: drives-load 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-}
+    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+  }
   .drives-load div:nth-child(1) {
     animation-delay: -0.45s;
   }
