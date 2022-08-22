@@ -15,6 +15,10 @@ body {
 svg {
     fill: #999;
 }
+ext-svg {
+    width: inherit;
+    height: inherit;
+}
 button {
     width: 15vmin;
     height: 15vmin;
@@ -48,6 +52,7 @@ span {
     flex-wrap: wrap;
     height: 50vh;
     width: 100%;
+    overflow: auto;
 }
   
 .wrapper-format {
@@ -65,14 +70,19 @@ span {
     max-width: 350px;
     min-height: 200px;
     max-height: 350px;
+    cursor: not-allowed;
+    user-select: none;
+}
+#format-all.active {
     cursor: pointer;
+    user-select: unset;
     transition: all .1s ease-in-out;
     -webkit-transition: all .1s ease-in-out;
     -moz-transition: all .1s ease-in-out;
     -ms-transition: all .1s ease-in-out;
     -o-transition: all .1s ease-in-out;
 }
-#format-all:hover {
+#format-all.active:hover {
     transform: scale(1.1);
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
