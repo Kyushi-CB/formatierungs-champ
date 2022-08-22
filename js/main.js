@@ -4,6 +4,7 @@ const url = "./backend/get-drives.php";
 // query required html elements
 let wrapperDrives = document.querySelector('.wrapper-drives');
 let drivesLoad = document.querySelector('.drives-load');
+let formatButton = document.querySelector('.format-all');
 
 // declare required arrays
 let drives = []; 
@@ -131,7 +132,7 @@ function createDrives() {
 }
 
 // set element style for each element based on status
-function setDriveState() {
+async function setDriveState() {
     let drivesAvailable = document.querySelectorAll('.wrapper-drives button');
     let getType = document.getElementsByClassName('drive-type');
     let getName = document.getElementsByClassName('drive-name');
@@ -142,19 +143,23 @@ function setDriveState() {
         if (getType[i].textContent == "N/A" || getName[i].textContent == "N/A") {
             drivesAvailable[i].classList.remove("formatted");
             drivesAvailable[i].classList.add("error");
+            formatButton.classList.remove("active");
         }
         if (getIsFormatted[i].textContent == "Formatiert" && getType[i].textContent && getName[i].textContent != "N/A") {
             drivesAvailable[i].classList.add("formatted");
             drivesAvailable[i].classList.remove("error");
+            formatButton.classList.remove("active");
         }
         if (getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent && getName[i].textContent != "N/A"){
             drivesAvailable[i].classList.remove("formatted");
-            drivesAvailable[i].classList.remove("error");       
+            drivesAvailable[i].classList.remove("error");
+            formatButton.classList.add("active");      
         }
     }
 }
 
-// execute above functions every 3 seconds to update drive status without full page refresh
+
+// execute above functions every 1.5 seconds to update drive status without full page refresh
 setInterval(function () {
     loading();
 }, 1500);
