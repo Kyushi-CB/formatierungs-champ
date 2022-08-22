@@ -4,7 +4,7 @@ const url = "./backend/get-drives.php";
 // query required html elements
 let wrapperDrives = document.querySelector('.wrapper-drives');
 let drivesLoad = document.querySelector('.drives-load');
-let formatButton = document.querySelector('.format-all');
+let formatButton = document.querySelector('#format-all');
 
 // declare required arrays
 let drives = []; 
