@@ -8,9 +8,8 @@ function formatDrives() {
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.send('action=format');
 }
-
+let buttonFormat = document.querySelector("#format-all");
 buttonFormat.addEventListener('click', function() {
-    let buttonFormat = document.querySelector("#format-all");
     if (buttonFormat.classList.contains("active")) {
         formatDrives();
     }
