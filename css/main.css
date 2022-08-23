@@ -13,7 +13,7 @@ body {
 
 /* GLOBAL */
 svg {
-    fill: #999;
+    fill: #fff;
 }
 ext-svg {
     width: inherit;
@@ -34,7 +34,7 @@ button {
     align-items: center;
     flex-direction: column;
     flex-wrap: nowrap;
-    color: #999;
+    color: #fff;
 }
 span {
     margin: 0.5vmin;
@@ -94,6 +94,13 @@ span {
     -ms-transition: all .1s ease-in-out;
     -o-transition: all .1s ease-in-out;
 }
+#format-all svg {
+    fill: #555;
+}
+#format-all.active svg {
+    fill: #1c1;
+}
+
 /* //BASIC LAYOUT// */
 
 /* DYNAMIC CHANGES */
