@@ -2,7 +2,7 @@ function formatDrives() {
     let xhr = new XMLHttpRequest();
     xhr.open('POST','./backend/format-drives.php',true);
     xhr.onload = function() {
-        console.log(this.responseText);
+        alert(this.responseText);
     }
 
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

@@ -1,5 +1,5 @@
 <?php
 if($_POST['action'] == 'format') {
-    echo "test";
+    echo "Test POST to php successful";
   }
 ?>
