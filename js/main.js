@@ -145,12 +145,12 @@ async function setDriveState() {
             drivesAvailable[i].classList.add("error");
             formatButton.classList.remove("active");
         }
-        if (getIsFormatted[i].textContent == "Formatiert" && getType[i].textContent && getName[i].textContent != "N/A") {
+        if (getIsFormatted[i].textContent == "Formatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A") {
             drivesAvailable[i].classList.add("formatted");
             drivesAvailable[i].classList.remove("error");
             formatButton.classList.remove("active");
         }
-        if (getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent && getName[i].textContent != "N/A"){
+        if (getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A"){
             drivesAvailable[i].classList.remove("formatted");
             drivesAvailable[i].classList.remove("error");
             formatButton.classList.add("active");      
