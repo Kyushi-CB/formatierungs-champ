@@ -164,14 +164,12 @@ async function setFormBtnState() {
     let getIsFormatted = document.getElementsByClassName('drive-is-formatted');
 
     for (let i = 0; i < drivesAvailable.length; i++) {
-        if (getType[i].textContent == "N/A" || getName[i].textContent == "N/A") {
-            formatButton.classList.remove("active");
-        }
-        if (getIsFormatted[i].textContent == "Formatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A") {
-            formatButton.classList.remove("active");
-        }
         if (getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A"){
             formatButton.classList.add("active");
+            return;
+        } 
+        else {
+            formatButton.classList.remove("active");
         }
 
     }
