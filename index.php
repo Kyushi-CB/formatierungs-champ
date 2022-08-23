@@ -10,7 +10,10 @@
     <title>Formatierungs Champ</title>
 </head>
     <body>
-    <div class="drives-load visible"><div></div><div></div><div></div><div></div></div>
+        <div class="drives-load visible">
+            <div class="spinner"><div></div><div></div><div></div><div></div></div>
+        </div>
+        
         <div class="wrapper-drives"></div>
         <div class="wrapper-format">
             <button id="format-all" type="button" onclick="test();">
