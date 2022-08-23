@@ -50,7 +50,7 @@ async function handleDrives() {
         }
        createDrives();
     }
-    setDriveState();   
+    setFormBtnState();   
 }
 
 async function loading() {
