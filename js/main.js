@@ -138,25 +138,40 @@ async function setDriveState() {
     let getName = document.getElementsByClassName('drive-name');
     let getIsFormatted = document.getElementsByClassName('drive-is-formatted');
 
-
     for (let i = 0; i < drivesAvailable.length; i++) {
         if (getType[i].textContent == "N/A" || getName[i].textContent == "N/A") {
             drivesAvailable[i].classList.remove("formatted");
             drivesAvailable[i].classList.add("error");
-            formatButton.classList.remove("active");
-            return;
         }
         if (getIsFormatted[i].textContent == "Formatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A") {
             drivesAvailable[i].classList.add("formatted");
             drivesAvailable[i].classList.remove("error");
-            formatButton.classList.remove("active");
-            return;
         }
         if (getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A"){
             drivesAvailable[i].classList.remove("formatted");
-            drivesAvailable[i].classList.remove("error");
+            drivesAvailable[i].classList.remove("error");   
+        }
+
+    }
+}
+
+async function setFormBtnState() {
+    await setDriveState();
+
+    let drivesAvailable = document.querySelectorAll('.wrapper-drives button');
+    let getType = document.getElementsByClassName('drive-type');
+    let getName = document.getElementsByClassName('drive-name');
+    let getIsFormatted = document.getElementsByClassName('drive-is-formatted');
+
+    for (let i = 0; i < drivesAvailable.length; i++) {
+        if (getType[i].textContent == "N/A" || getName[i].textContent == "N/A") {
+            formatButton.classList.remove("active");
+        }
+        if (getIsFormatted[i].textContent == "Formatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A") {
+            formatButton.classList.remove("active");
+        }
+        if (getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A"){
             formatButton.classList.add("active");
-            return;      
         }
 
     }
