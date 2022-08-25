@@ -1,6 +1,6 @@
 <?php
 
-# TODO: NVME support currently missing only sata on /dev/sd*
+# TODO: NVME support currently missing, only sata on /dev/sd*
 # get array of paths for current available drives on /dev/sd* 
 exec('lsblk -nd --output PATH | grep "sd"', $drivePath);
 
