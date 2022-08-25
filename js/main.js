@@ -139,6 +139,9 @@ async function setDriveState() {
     let getIsFormatted = document.getElementsByClassName('drive-is-formatted');
 
     for (let i = 0; i < drivesAvailable.length; i++) {
+
+        getIsFormatted[i].textContent = drives[i].Status;
+        
         if (getType[i].textContent == "N/A" || getName[i].textContent == "N/A") {
             drivesAvailable[i].classList.remove("formatted");
             drivesAvailable[i].classList.add("error");
