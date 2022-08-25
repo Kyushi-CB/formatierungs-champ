@@ -4,7 +4,6 @@ function formatDrives() {
     xhr.open('POST','./backend/format-drives.php',true);
     xhr.onload = function() {
         drivesLoad.classList.remove('visible');
-        alert(this.responseText);
     }
 
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
