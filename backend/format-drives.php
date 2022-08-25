@@ -22,7 +22,7 @@ if($_POST['action'] == 'format') {
     if ($getType == "Nominal Media Rotation Rate: Solid State Device") {
        
       shell_exec('sudo hdparm --user-master u --security-set-pass format ' . $drivePath[$i] . ' && sudo hdparm --user-master u --security-erase format ' . $drivePath[$i]);
-      echo "ssd exec done";
+      echo "$drivePath[$i] : done";
       #$getType = "SSD";
     } 
     if ($getType == "" || $getType == null) {

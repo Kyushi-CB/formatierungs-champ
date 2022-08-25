@@ -1,8 +1,10 @@
 function formatDrives() {
+    drivesLoad.classList.add('visible');
     let xhr = new XMLHttpRequest();
     xhr.open('POST','./backend/format-drives.php',true);
     xhr.onload = function() {
-        console.log(this.responseText);
+        drivesLoad.classList.remove('visible');
+        alert(this.responseText);
     }
 
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
