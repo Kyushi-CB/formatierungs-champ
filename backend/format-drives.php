@@ -15,12 +15,13 @@ if($_POST['action'] == 'format') {
 
     #check if SSD, non SSD or N/A
     if ($getType != "" && $getType != "Nominal Media Rotation Rate: Solid State Device") {
-      echo "ssd";
-      shell_exec('sudo hdparm --user-master u --security-set-pass format ' . $drivePath[$i] . ' && sudo hdparm --user-master u --security-erase format ' . $drivePath[$i]);
+      echo "hdd";
+      
         #$getType = "HDD";
     } 
     if ($getType == "Nominal Media Rotation Rate: Solid State Device") {
-      echo "hdd";  
+      echo "ssd";  
+      shell_exec('sudo hdparm --user-master u --security-set-pass format ' . $drivePath[$i] . ' && sudo hdparm --user-master u --security-erase format ' . $drivePath[$i]);
       #$getType = "SSD";
     } 
     if ($getType == "" || $getType == null) {
