@@ -5,10 +5,11 @@ Der "Formatierungs Champ" vereinfacht und automatisiert das Low-Level-Formatiere
 ## Index
 
 1. [Funktionsweise](#funktionsweise)
-2. [Vorbereitungen](#vorbereitungen)
-3. [Deployment mit Image](#deployment-mit-image)
-4. [Deployment mit Script](#deployment-mit-script)
-5. [Arbeiten mit dem Formatierungs Champ](#arbeiten-mit-dem-formatierungs-champ)
+2. [Features](#features) 
+3. [Vorbereitungen](#vorbereitungen)
+4. [Deployment mit Image](#deployment-mit-image)
+5. [Deployment mit Script](#deployment-mit-script)
+6. [Arbeiten mit dem Formatierungs Champ](#arbeiten-mit-dem-formatierungs-champ)
 
 ## Funktionsweise
 
@@ -30,11 +31,16 @@ den Secure Erase anstoßen.
 - hdparm
 - parted
 - apache2
-- php
-- javascript
-- html
-- css
+- Chromium
+- PHP
+- Javascript
+- HTML5
+- CSS
 - bash
+
+Dreh - und Ankerpunkt ist hier PHP. Im Backend werden alle nötigen Shell-Befehle ausgeführt und die darüber gesammelten Daten aubereitet,
+verarbeitet und an das Frontend übergeben.
+
 
 
 ### Wiki - to be created
