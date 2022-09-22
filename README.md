@@ -4,11 +4,11 @@ Der "Formatierungs Champ" vereinfacht und automatisiert das Low-Level-Formatiere
 
 ## Index
 
-1. Funktionsweise
-2. Vorbereitungen
-3. Deployment per Image
-4. Deployment per Script
-5. Arbeiten mit dem Formatierungs Champ
+[1. Funktionsweise]()
+[2. Vorbereitungen]()
+[3. Deployment per Image]()
+[4. Deployment per Script]()
+[5. Arbeiten mit dem Formatierungs Champ]()
 
 
 ### Wiki - to be created
