@@ -11,6 +11,6 @@ Der "Formatierungs Champ" vereinfacht und automatisiert das Low-Level-Formatiere
 5. Arbeiten mit dem Formatierungs Champ
 
 
-###Wiki - to be created
+### Wiki - to be created
 ### License
 [GNU General Public License v.3.0](https://github.com/Kyushi-CB/formatierungs-champ/edit/master/LICENSE.md)
