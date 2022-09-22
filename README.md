@@ -36,12 +36,21 @@ den Secure Erase anstoßen.
 - Javascript
 - HTML5
 - CSS
+- GIT
 - bash
 
 Dreh - und Ankerpunkt ist hier PHP. Im Backend werden alle nötigen Shell-Befehle ausgeführt und die darüber gesammelten Daten aubereitet,
 verarbeitet und an das Frontend übergeben.
 
+### Eine Internetverbindung wird nur beim Deployment per Script benötigt und zum Updaten des Repositorys. 
 
+## Features
+
+- Secure Erase von externen und internen Datenträgern mit USB, S-ata, M-Key Schnittstelle (passender Adapter benötigt)
+- Secure Erase von NVME Datenträgern (to be implemented)
+- automatisiertes Formatieren von mehreren Datenträgern
+- Grafisches lokales Webinterface
+- 1-click Formatierung
 
 ### Wiki - to be created
 ### License
