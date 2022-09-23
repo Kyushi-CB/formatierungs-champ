@@ -9,7 +9,7 @@ Der "Formatierungs Champ" vereinfacht und automatisiert das Low-Level-Formatiere
 3. [Vorbereitungen](#vorbereitungen)
 4. [Deployment](#deployment)
 5. [Formatieren](#formatieren)
-6. [License](#license)
+6. [Lizenz](#lizenz)
 
 ## Funktionsweise
 
@@ -97,6 +97,24 @@ Es wurde ein neuer User "kiosk" vom Script angelegt.
 Dieser darf nicht gelöscht oder umbenannt werden,
 da das backend über diesen User Shell-Commands ausführt.
 
-### Wiki - to be created
+## Formatieren
+Sobald ein Datenträger erkannt wurde unter /dev/sd* oder /dev/nvme* wird sie im Browser angezeigt.
+Es werden 3 Informationen vom Datenträger abgefragt:
+- Art z.B. SSD
+- Modellname
+- Formatierungsstatus
+
+Falls einer dieser Werte nicht ausgelesen werden kann, wird an betreffender Stelle N/A angezeigt und das Icon färbt sich rot.
+in diesem Fall kann man von einem Hardwaredefekt ausgehen. Der Datenträger kann in diesem Zustand nicht formatiert werden.
+
+Wenn auf dem Datenträger eine Partitionstabelle erkannt wird, bleibt das Icon weiß und der Formatierungsstatus ändert sich auf "Unformatiert"
+Der Formatierungsbutton färbt sich grün. Mit einem klick auf diesen und mit anschließender Bestätigung startet der Formatierungsprozess.
+Wie oben erwähnt, kann das bei HDDs mehrere Stunden dauern.
+#### Achtung!
+Der Formatierungsprozess darf unter keinen Umständen unterbrochen werden, da dass den Datenträger irreparabel beschädigen kann.
+
+Sobald der Formatierungsprozess abgeschlossen ist, sollte sich das Icon grün färben.
+Der Datenträger kann jetzt entfernt werden.
+
 ### License
 [GNU General Public License v.3.0](https://github.com/Kyushi-CB/formatierungs-champ/master/LICENSE.md)
