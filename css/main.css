@@ -5,10 +5,11 @@ body {
     height: 100vh;
     overflow: hidden;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    background-color: #2e2e2e;
+    background-color: #111;
+    font-family: sans-serif;
 }
 
 /* GLOBAL */
@@ -21,57 +22,72 @@ ext-svg {
 }
 button {
     width: 15vmin;
-    height: 15vmin;
+    height: auto;
     min-width: 150px;
     max-width: 300px;
     min-height: 150px;
     max-height: 300px;
     background: none;
     border: none;
-    margin: 5vmin;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     flex-wrap: nowrap;
     color: #fff;
+    margin: 1%;
 }
-span {
-    margin: 0.5vmin;
-    width: max-content;
-    height: max-content;
-}
+
 /* //GLOBAL// */
 
 /* BASIC LAYOUT*/
+
+.version-number {
+    width: 15vmin;
+    min-width: 150px;
+    max-width: 200px;
+    color: #fff;
+    font-size: calc(8px + 0.2vmin);
+}
 .wrapper-drives {
+    min-width: 400px;
+    min-height: 250px;
+    width: 90vw;
+    height: 50vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 50vh;
-    width: 100%;
     overflow: auto;
 }
-  
 .wrapper-format {
-    width: 100%;
-    height: 50vh;
+    position: absolute;
+    bottom: 0;
+    min-width: 100vw;
+    min-height: 100px;
+    width: 90vw;
+    height: auto;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 }
-
 #format-all {
-    width: 15vmin;
-    height: 15vmin;
-    min-width: 200px;
-    max-width: 350px;
-    min-height: 200px;
-    max-height: 350px;
+    width: 20vmin;
+    height: 20vmin;
+    min-width: 100px;
+    max-width: 200px;
+    min-height: 100px;
+    max-height: 200px;
     cursor: not-allowed;
-
+}
+#format-all:hover {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    cursor: not-allowed;
 }
 #format-all.active {
     cursor: pointer;
