@@ -67,17 +67,28 @@ In diesem Beispiel setzte ich die Formatierungsstation auf einem Raspberry Pi 4 
 - Debian, Raspbian oder eine vergleichbare Distribution mit Grafischer Oberfläche
 - sudo-root Rechte werden benötigt
 
-Desweiteren muss GIT installiert werden wie folgt:
-``` bash
-sudo apt update && sudo apt ugrade -y
-sudo apt install git -y
-```
-
-
 ## Deployment
 
-Das Setup kann mit dem [deploy.sh]() durchgeführt werden.
+Bevor es losgeht, werden wie immer erstmal die Pakete geupdated.
+``` bash
+sudo apt update && sudo apt upgrade -y
+```
+
+Das Setup kann mit dem deploy.sh Script durchgeführt werden.
+``` bash
+wget https://github.com/Kyushi-CB/formatierungs-champ/master/deploy.sh
+````
+
+Bevor das Script benutzt werden kann, muss es noch ausführbar gemacht werden!
+``` bash
+sudo chmod +x deploy.sh
+```
+
+Jetzt kann es ausgeführt werden.
+``` bash
+./deploy.sh
+```
 
 ### Wiki - to be created
 ### License
-[GNU General Public License v.3.0](https://github.com/Kyushi-CB/formatierungs-champ/edit/master/LICENSE.md)
+[GNU General Public License v.3.0](https://github.com/Kyushi-CB/formatierungs-champ/master/LICENSE.md)
