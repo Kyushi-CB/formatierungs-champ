@@ -65,9 +65,18 @@ In diesem Beispiel setzte ich die Formatierungsstation auf einem Raspberry Pi 4 
 - ein Display zum anzeigen und steuern der Formatierungsstation
 - Maus und Tastatur (Falls ein Touchdisplay verwendet wird, kann auf Maus und Tastatur verzichtet werden)
 - Debian, Raspbian oder eine vergleichbare Distribution mit Grafischer Oberfläche
+- sudo-root Rechte werden benötigt
+
+Desweiteren muss GIT installiert werden wie folgt:
+``` bash
+sudo apt update && sudo apt ugrade -y
+sudo apt install git -y
+```
+
 
 ## Deployment
 
+Das Setup kann mit dem [deploy.sh]() durchgeführt werden.
 
 ### Wiki - to be created
 ### License
