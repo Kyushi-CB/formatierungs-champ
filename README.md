@@ -40,7 +40,7 @@ Andere Linux Distributionen wurden nicht getestet sollten aber auch funktioniere
 - GIT
 - bash
 
-Dreh - und Ankerpunkt ist hier PHP. Im Backend werden alle nötigen Shell-Befehle ausgeführt und die darüber gesammelten Daten aubereitet,
+Dreh -und Angelpunkt ist hier PHP. Im Backend werden alle nötigen Shell-Befehle ausgeführt und die darüber gesammelten Daten aubereitet,
 verarbeitet und an das Frontend übergeben.
 
 **Eine Internetverbindung wird nur beim Deployment per Script benötigt und zum Updaten des Repositorys und der Paketquellen.**
