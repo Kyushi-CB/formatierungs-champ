@@ -14,7 +14,7 @@ Der "Formatierungs Champ" vereinfacht und automatisiert das Low-Level-Formatiere
 ## Funktionsweise
 
 Als Formatierungsmethode wird der Secure Erase Command von hdparm benutzt. Ein Secure Erase dauert bei SSDs und NVME SSDs ca. 20 Sekunden bis 1 Minute.
-Bei HDDs kann man pro Platte (Richtgröße 500GB) ca. mit 2-3 Stunden rechnen.
+Bei HDDs kann man bei einer Richtgröße von 500GB mit ca. 2-3 Stunden rechnen.
 
 Jetzt müsste man für jeden Datenträger, mit hdparm oder ähnlichen Tools,
 zuerst den Status des Datenträgers überprüfen und danach den Secure Erase per Command ausführen.
