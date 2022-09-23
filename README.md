@@ -93,7 +93,7 @@ Jetzt kann es ausgeführt werden.
 Nachdem das Script durchgelaufen ist, startet sich das System neu und man wird von einem Chromium
 im Kioskmode begrüßt, in dem nun der Formatierungs Champ laufen sollte.
 
-**Wichtig!**
+#### Wichtig!
 Es wurde ein neuer User "kiosk" vom Script angelegt.
 Dieser darf nicht gelöscht oder umbenannt werden,
 da das backend über diesen User Shell-Commands ausführt.
