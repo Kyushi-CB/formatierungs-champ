@@ -8,9 +8,8 @@ Der "Formatierungs Champ" vereinfacht und automatisiert das Low-Level-Formatiere
 2. [Features](#features) 
 3. [Vorbereitungen](#vorbereitungen)
 4. [Deployment](#deployment)
-6. [Formatieren](#formatieren)
-7. [Roadmap](#roadmap)
-8. [License](#license)
+5. [Formatieren](#formatieren)
+6. [License](#license)
 
 ## Funktionsweise
 
