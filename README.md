@@ -26,10 +26,10 @@ Diese Software automatisiert diesen Prozess und liefert alle relevanten Daten ü
 Wenn die Datenträger erkannt, auf Fehler überprüft und der Formatierungsstatus ausgelesen wurde, kann man mit einem Klick auf den "Formatieren" Button,
 den Secure Erase anstoßen.
 
-#### In diesem Guide wird Raspbian in der 64bit Version mit GUI als OS benutzt.
+**In diesem Guide wird Raspbian in der 64bit Version mit GUI als OS benutzt.**
 Andere Linux Distributionen wurden nicht getestet sollten aber auch funktionieren.
 
-### Folgende Sprachen und Programme werden benutzt:
+**Folgende Sprachen und Programme werden benutzt:**
 - hdparm
 - parted
 - apache2
@@ -44,8 +44,8 @@ Andere Linux Distributionen wurden nicht getestet sollten aber auch funktioniere
 Dreh - und Ankerpunkt ist hier PHP. Im Backend werden alle nötigen Shell-Befehle ausgeführt und die darüber gesammelten Daten aubereitet,
 verarbeitet und an das Frontend übergeben.
 
-### Eine Internetverbindung wird nur beim Deployment per Script benötigt und zum Updaten des Repositorys und der Paketquellen.
-### Das Betreiben der Formatierungsstation funktioniert komplett offline.
+**Eine Internetverbindung wird nur beim Deployment per Script benötigt und zum Updaten des Repositorys und der Paketquellen.**
+**Das Betreiben der Formatierungsstation funktioniert komplett offline.**
 
 ## Features
 
@@ -60,7 +60,7 @@ verarbeitet und an das Frontend übergeben.
 
 In diesem Beispiel setzte ich die Formatierungsstation auf einem Raspberry Pi 4 Model B auf.
 
-### Es wird benötigt:
+**Es wird benötigt:**
 - ein Raspberry Pi oder ein PC mit vergleichbaren oder besseren Spezifikationen
 - ein aktives USB-Hub (optional, falls nicht genug USB-Ports vorhanden sind bzw. die Datenträger extra Stromzufuhr brauchen z.B. HDDs, NVMEs)
 - diverse Adapter für benötigte Schnittstellen z.B. S-ata -> USB 3.0 oder im Desktop bereich PCI-E Adapterkarten
@@ -93,7 +93,7 @@ Jetzt kann es ausgeführt werden.
 Nachdem das Script durchgelaufen ist, startet sich das System neu und man wird von einem Chromium
 im Kioskmode begrüßt, in dem nun der Formatierungs Champ laufen sollte.
 
-## Wichtig!
+**Wichtig!**
 Es wurde ein neuer User "kiosk" vom Script angelegt.
 Dieser darf nicht gelöscht oder umbenannt werden,
 da das backend über diesen User Shell-Commands ausführt.
