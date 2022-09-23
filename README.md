@@ -1,6 +1,6 @@
 # Formatierungs Champ
 
-Der "Formatierungs Champ" vereinfacht und automatisiert das Low-Level-Formatieren von externen Datenträgern oder Datenträgern mit S-ATA schnittstelle.
+Der "Formatierungs Champ" vereinfacht und automatisiert das Low-Level-Formatieren von Datenträgern.
 
 ## Index
 
