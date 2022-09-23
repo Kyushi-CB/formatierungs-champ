@@ -10,6 +10,8 @@ Der "Formatierungs Champ" vereinfacht und automatisiert das Low-Level-Formatiere
 4. [Deployment](#deployment)
 5. [Deployment mit Script](#deployment-mit-script)
 6. [Arbeiten mit dem Formatierungs Champ](#arbeiten-mit-dem-formatierungs-champ)
+7. [Roadmap](#roadmap)
+8. [License](#license)
 
 ## Funktionsweise
 
@@ -70,7 +72,7 @@ In diesem Beispiel setzte ich die Formatierungsstation auf einem Raspberry Pi 4 
 
 ## Deployment
 
-Bevor es losgeht, werden wie immer erstmal die Pakete geupdated.
+Bevor es losgeht, werden wie immer zuerst die Paketquellen aktualisiert.
 ``` bash
 sudo apt update && sudo apt upgrade -y
 ```
@@ -89,6 +91,13 @@ Jetzt kann es ausgeführt werden.
 ``` bash
 ./deploy.sh
 ```
+Nachdem das Script durchgelaufen ist, startet sich das System neu und man wird von einem Chromium
+im Kioskmode begrüßt, in dem nun der Formatierungs Champ laufen sollte.
+
+## Wichtig!
+Es wurde ein neuer User "kiosk" vom Script angelegt.
+Dieser darf nicht gelöscht oder umbenannt werden,
+da das backend über diesen User Shell-Commands ausführt.
 
 ### Wiki - to be created
 ### License
