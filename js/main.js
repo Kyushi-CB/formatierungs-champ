@@ -183,7 +183,7 @@ async function setFormBtnState() {
 
 // execute above functions every 1.5 seconds to update drive status without full page refresh
 setInterval(function () {
-    if (drivesLoad.classList.contains('visible')) {
+    if (!drivesLoad.classList.contains('visible')) {
         loading();
     }
     
