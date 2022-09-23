@@ -131,7 +131,7 @@ function createDrives() {
     
 }
 
-// set element style for each element based on status
+// refresh status for each drive
 async function setDriveState() {
     let drivesAvailable = document.querySelectorAll('.wrapper-drives button');
     let getType = document.getElementsByClassName('drive-type');
@@ -140,6 +140,8 @@ async function setDriveState() {
 
     for (let i = 0; i < drivesAvailable.length; i++) {
 
+        getName[i].textContent = drives[i].Name;
+        getType[i].textContent = drives[i].Type;
         getIsFormatted[i].textContent = drives[i].Status;
         
         if (getType[i].textContent == "N/A" || getName[i].textContent == "N/A") {
@@ -181,5 +183,8 @@ async function setFormBtnState() {
 
 // execute above functions every 1.5 seconds to update drive status without full page refresh
 setInterval(function () {
-    loading();
+    if (drivesLoad.classList.contains('visible')) {
+        loading();
+    }
+    
 }, 1500);
