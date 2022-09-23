@@ -43,7 +43,8 @@ Andere Linux Distributionen wurden nicht getestet sollten aber auch funktioniere
 Dreh - und Ankerpunkt ist hier PHP. Im Backend werden alle nötigen Shell-Befehle ausgeführt und die darüber gesammelten Daten aubereitet,
 verarbeitet und an das Frontend übergeben.
 
-### Eine Internetverbindung wird nur beim Deployment per Script benötigt und zum Updaten des Repositorys. 
+### Eine Internetverbindung wird nur beim Deployment per Script benötigt und zum Updaten des Repositorys und der Paketquellen.
+### Das Betreiben der Formatierungsstation funktioniert komplett offline.
 
 ## Features
 
