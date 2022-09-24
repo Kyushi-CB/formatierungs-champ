@@ -21,34 +21,34 @@ zuerst den Status des Datenträgers überprüfen und danach den Secure Erase per
 
 Das dauert :/
 
-Diese Software automatisiert diesen Prozess und liefert alle relevanten Daten übersichtlich an ein lokales Web-Frontend.
+Diese Software automatisiert diesen Prozess und liefert alle relevanten Daten, übersichtlich an ein lokales Web-Frontend.
 Wenn die Datenträger erkannt, auf Fehler überprüft und der Formatierungsstatus ausgelesen wurde, kann man mit einem Klick auf den "Formatieren" Button,
 den Secure Erase anstoßen.
 
 **In diesem Guide wird Raspbian in der 64bit Version mit GUI als OS benutzt.**
-Andere Linux Distributionen wurden nicht getestet sollten aber auch funktionieren.
+Andere Linux Distributionen wurden nicht getestet, sollten aber auch funktionieren.
 
 **Folgende Sprachen und Programme werden benutzt:**
 - hdparm
-- parted
-- apache2
+- Parted
+- Apache2
 - Chromium
 - PHP
 - Javascript
 - HTML5
 - CSS
 - GIT
-- bash
+- Bash
 
-Dreh -und Angelpunkt ist hier PHP. Im Backend werden alle nötigen Shell-Befehle ausgeführt und die darüber gesammelten Daten aubereitet,
+Dreh -und Angelpunkt ist hier PHP. Im Backend werden alle nötigen Shell-Befehle ausgeführt und die darüber gesammelten Daten aufbereitet,
 verarbeitet und an das Frontend übergeben.
 
-**Eine Internetverbindung wird nur beim Deployment per Script benötigt und zum Updaten des Repositorys und der Paketquellen.**
+**Eine Internetverbindung wird nur beim Deployment per Script benötigt und zum aktualisieren des Repositorys und der Paketquellen.**
 **Das Betreiben der Formatierungsstation funktioniert komplett offline.**
 
 ## Features
 
-- Secure Erase von externen und internen Datenträgern mit USB, S-ata, M-Key Schnittstelle (passender Adapter benötigt)
+- Secure Erase von externen und internen Datenträgern mit z.B. USB, S-ATA, M-Key etc. Schnittstelle (passender Adapter benötigt)
 - Secure Erase von NVME Datenträgern (to be implemented)
 - automatisiertes Formatieren von mehreren Datenträgern
 - Grafisches lokales Webinterface
@@ -57,12 +57,12 @@ verarbeitet und an das Frontend übergeben.
 
 ## Vorbereitungen
 
-In diesem Beispiel setzte ich die Formatierungsstation auf einem Raspberry Pi 4 Model B auf.
+In diesem Beispiel setze ich die Formatierungsstation auf einem Raspberry Pi 4 Model B auf.
 
 **Es wird benötigt:**
-- ein Raspberry Pi oder ein PC mit vergleichbaren oder besseren Spezifikationen
+- ein Raspberry Pi 4 oder ein PC mit vergleichbaren oder besseren Spezifikationen
 - ein aktives USB-Hub (optional, falls nicht genug USB-Ports vorhanden sind bzw. die Datenträger extra Stromzufuhr brauchen z.B. HDDs, NVMEs)
-- diverse Adapter für benötigte Schnittstellen z.B. S-ata -> USB 3.0 oder im Desktop bereich PCI-E Adapterkarten
+- diverse Adapter für benötigte Schnittstellen z.B. S-ata -> USB 3.0 oder im Desktopbereich PCI-E Adapterkarten
 - ein Display zum anzeigen und steuern der Formatierungsstation
 - Maus und Tastatur (Falls ein Touchdisplay verwendet wird, kann auf Maus und Tastatur verzichtet werden)
 - Debian, Raspbian oder eine vergleichbare Distribution mit Grafischer Oberfläche
@@ -98,20 +98,20 @@ Dieser darf nicht gelöscht oder umbenannt werden,
 da das backend über diesen User Shell-Commands ausführt.
 
 ## Formatieren
-Sobald ein Datenträger erkannt wurde unter /dev/sd* oder /dev/nvme* wird sie im Browser angezeigt.
+Sobald ein Datenträger erkannt wurde unter /dev/sd* oder /dev/nvme* wird er im Browser angezeigt.
 Es werden 3 Informationen vom Datenträger abgefragt:
-- Art z.B. SSD
+- Typ z.B. HDD, SSD, NVME
 - Modellname
 - Formatierungsstatus
 
-Falls einer dieser Werte nicht ausgelesen werden kann, wird an betreffender Stelle N/A angezeigt und das Icon färbt sich rot.
+Falls einer dieser Werte nicht ausgelesen werden kann, wird an betreffender Stelle N/A angezeigt und das Drive-Icon färbt sich rot.
 in diesem Fall kann man von einem Hardwaredefekt ausgehen. Der Datenträger kann in diesem Zustand nicht formatiert werden.
 
-Wenn auf dem Datenträger eine Partitionstabelle erkannt wird, bleibt das Icon weiß und der Formatierungsstatus ändert sich auf "Unformatiert"
+Wenn auf dem Datenträger eine Partitionstabelle erkannt wird, bleibt das Icon weiß und der Formatierungsstatus ändert sich auf "Unformatiert".
 Der Formatierungsbutton färbt sich grün. Mit einem klick auf diesen und mit anschließender Bestätigung startet der Formatierungsprozess.
 Wie oben erwähnt, kann das bei HDDs mehrere Stunden dauern.
 #### Achtung!
-Der Formatierungsprozess darf unter keinen Umständen unterbrochen werden, da dass den Datenträger irreparabel beschädigen kann.
+Der Formatierungsprozess darf unter keinen Umständen unterbrochen werden, da dies den Datenträger irreparabel beschädigen kann.
 
 Sobald der Formatierungsprozess abgeschlossen ist, sollte sich das Icon grün färben.
 Der Datenträger kann jetzt entfernt werden.
