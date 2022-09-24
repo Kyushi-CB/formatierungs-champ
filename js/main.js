@@ -169,7 +169,7 @@ async function setFormBtnState() {
     let getIsFormatted = document.getElementsByClassName('drive-is-formatted');
 
     for (let i = 0; i < drivesAvailable.length; i++) {
-        if (!drivesLoad.classList.contains('visible') && getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A") {
+        if (getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A") {
             formatButton.classList.add("active");
             return;
         } 
@@ -177,6 +177,10 @@ async function setFormBtnState() {
             formatButton.classList.remove("active");
         }
 
+    }
+
+    if (drivesAvailable.length == 0) {
+        formatButton.classList.remove("active");
     }
 }
 
