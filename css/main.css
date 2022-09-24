@@ -79,17 +79,23 @@ button {
     max-width: 200px;
     min-height: 100px;
     max-height: 200px;
+    visibility: hidden;
+    opacity: 0;
     cursor: not-allowed;
+    transition: all .1s ease-in-out;
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -ms-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
 }
-#format-all:hover {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
-    cursor: not-allowed;
-}
-#format-all.active {
+#format-all.active { 
+    visibility: visible;
+    opacity: 1;
     cursor: pointer;
     pointer-events: all;
     transition: all .1s ease-in-out;
@@ -97,6 +103,11 @@ button {
     -moz-transition: all .1s ease-in-out;
     -ms-transition: all .1s ease-in-out;
     -o-transition: all .1s ease-in-out;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
 }
 #format-all.active:hover {
     transform: scale(1.1);
