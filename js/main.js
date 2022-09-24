@@ -180,10 +180,34 @@ async function setFormBtnState() {
     }
 }
 
+function formatDrives() {
+    drivesLoad.classList.add('visible');
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST','./backend/format-drives.php',true);
+    xhr.onload = function() {
+        drivesLoad.classList.remove('visible');
+    }
+
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.send('action=format');
+}
+
+let buttonFormat = document.querySelector("#format-all");
+let formatRunning = false;
+
+buttonFormat.addEventListener('click', function() {
+    if (buttonFormat.classList.contains("active")) {
+        formatRunning = true;
+        formatDrives();
+        formatRunning = false;
+    }
+});
+
+
 
 // execute above functions every 1.5 seconds to update drive status without full page refresh
 setInterval(function () {
-    if (!drivesLoad.classList.contains('visible')) {
+    if (formatRunning == false) {
         loading();
     }
     
