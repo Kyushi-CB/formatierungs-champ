@@ -7,7 +7,7 @@ const drivesLoad = document.querySelector('.drives-load');
 const formatButton = document.querySelector('#format-all');
 const submitWrapper = document.querySelector('.submit-wrapper');
 const submitButton = document.querySelector('#submit');
-const cancelButton = document.querySelector('cancel');
+const cancelButton = document.querySelector('#cancel');
 let textLoad = document.querySelector('#text-load');
 let textNotification = document.querySelector('#text-notification');
 
