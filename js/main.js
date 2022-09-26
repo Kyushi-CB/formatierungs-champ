@@ -226,6 +226,7 @@ let formatRunning = false;
 
 submitButton.addEventListener('click', function() {
     if (submitWrapper.classList.contains("active")) {
+        submitWrapper.classList.remove("active");
         formatRunning = true;
         formatDrives();
         formatRunning = false;
