@@ -2,9 +2,20 @@
 const url = "./backend/get-drives.php";
 
 // query required html elements
-let wrapperDrives = document.querySelector('.wrapper-drives');
-let drivesLoad = document.querySelector('.drives-load');
-let formatButton = document.querySelector('#format-all');
+const wrapperDrives = document.querySelector('.wrapper-drives');
+const drivesLoad = document.querySelector('.drives-load');
+const formatButton = document.querySelector('#format-all');
+const submitWrapper = document.querySelector('.submit-wrapper');
+const submitButton = document.querySelector('#submit');
+const cancelButton = document.querySelector('cancel');
+let textLoad = document.querySelector('#text-load');
+let textNotification = document.querySelector('#text-notification');
+
+// set text notifications
+const txtFormatting = "Secure Erase wird ausgeführt...";
+const txtNoDrives = "Es wurden keine Datenträger erkannt..."
+const txtDamaged = "Einer oder mehrere beschädigte Datenträger wurden gefunden und müssen entfernt werden.";
+const txtDone = "Fertig! Die Datenträger können nun entfernt werden."
 
 // declare required arrays
 let drives = []; 
@@ -28,7 +39,7 @@ async function handleDrives() {
 
 
     // get currently displayed drives and push name attribute to array of strings
-    let drivesAvailable = document.querySelectorAll('.wrapper-drives button');
+    let drivesAvailable = document.querySelectorAll('.wrapper-drives div');
 
     for (let i = 0; i < drivesAvailable.length; i++) {
         currentDrives.push(drivesAvailable[i].getAttribute("name"));
@@ -38,7 +49,7 @@ async function handleDrives() {
     if (currentDrives.length > drives.length) {
         obsoletDrives = currentDrives.filter((o1) => !drives.some((o2) => o1 == o2.Id));
         for (let i = 0; i < obsoletDrives.length; i++) {
-            document.querySelector('.wrapper-drives button[name="' + obsoletDrives[i] + '"]').remove();
+            document.querySelector('.wrapper-drives div[name="' + obsoletDrives[i] + '"]').remove();
         }
     }
 
@@ -56,14 +67,16 @@ async function handleDrives() {
 async function loading() {
     await handleDrives();
 
-    let drivesAvailable = document.querySelectorAll('.wrapper-drives button');
+    let drivesAvailable = document.querySelectorAll('.wrapper-drives div');
 
     if (drivesAvailable.length >= 1) {
         drivesLoad.classList.remove('visible');
+        textLoad.textContent = "";
     }
 
-    if (drivesAvailable.length < 1) {
+    if (drivesAvailable.length == 0) {
         drivesLoad.classList.add('visible');
+        textLoad.textContent = txtNoDrives;
     }
 }
 
@@ -73,15 +86,15 @@ function createDrives() {
     for (let i = 0; i < newDrives.length; i++) {
 
         if (newDrives[i].Type == "HDD" || newDrives[i].Type == "N/A") {
-            let newButton = document.createElement("button");
+            let newButton = document.createElement("div");
             let hddSvg = document.createElement('ext-svg');
             let newType = document.createElement("span");
             let newName = document.createElement("span");
             let newFormat = document.createElement("span");
 
             hddSvg.setAttribute('src', './assets/svg/hdd.svg');
-               
-            newButton.setAttribute("type", "button");
+
+            newButton.className = "drive";
             newButton.setAttribute("name", newDrives[i].Id);
             
             newType.className = 'drive-type';
@@ -101,7 +114,7 @@ function createDrives() {
         }
 
         if (newDrives[i].Type == "SSD") {
-            let newButton = document.createElement("button");
+            let newButton = document.createElement("div");
             let ssdSvg = document.createElement('ext-svg');
             let newType = document.createElement("span");
             let newName = document.createElement("span");
@@ -109,7 +122,7 @@ function createDrives() {
             
             ssdSvg.setAttribute('src', './assets/svg/ssd.svg');
 
-            newButton.setAttribute("type", "button");
+            newButton.className = "drive";
             newButton.setAttribute("name", newDrives[i].Id);
             
             newType.className = 'drive-type';
@@ -133,7 +146,7 @@ function createDrives() {
 
 // refresh status for each drive
 async function setDriveState() {
-    let drivesAvailable = document.querySelectorAll('.wrapper-drives button');
+    let drivesAvailable = document.querySelectorAll('.wrapper-drives div');
     let getType = document.getElementsByClassName('drive-type');
     let getName = document.getElementsByClassName('drive-name');
     let getIsFormatted = document.getElementsByClassName('drive-is-formatted');
@@ -147,14 +160,17 @@ async function setDriveState() {
         if (getType[i].textContent == "N/A" || getName[i].textContent == "N/A") {
             drivesAvailable[i].classList.remove("formatted");
             drivesAvailable[i].classList.add("error");
+            textNotification.textContent = txtDamaged;
         }
         if (getIsFormatted[i].textContent == "Formatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A") {
             drivesAvailable[i].classList.add("formatted");
             drivesAvailable[i].classList.remove("error");
+            textNotification.textContent = txtDone;
         }
         if (getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A"){
             drivesAvailable[i].classList.remove("formatted");
-            drivesAvailable[i].classList.remove("error");   
+            drivesAvailable[i].classList.remove("error");
+            textNotification.textContent = "";  
         }
 
     }
@@ -163,7 +179,7 @@ async function setDriveState() {
 async function setFormBtnState() {
     await setDriveState();
 
-    let drivesAvailable = document.querySelectorAll('.wrapper-drives button');
+    let drivesAvailable = document.querySelectorAll('.wrapper-drives div');
     let getType = document.getElementsByClassName('drive-type');
     let getName = document.getElementsByClassName('drive-name');
     let getIsFormatted = document.getElementsByClassName('drive-is-formatted');
@@ -186,28 +202,39 @@ async function setFormBtnState() {
 
 function formatDrives() {
     drivesLoad.classList.add('visible');
+    textLoad.textContent = txtFormatting;
     let xhr = new XMLHttpRequest();
     xhr.open('POST','./backend/format-drives.php',true);
     xhr.onload = function() {
         drivesLoad.classList.remove('visible');
+        textLoad = "";
     }
 
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.send('action=format');
 }
 
-let buttonFormat = document.querySelector("#format-all");
+formatButton.addEventListener('click', function() {
+    if (formatButton.classList.contains("active")) {
+        submitWrapper.classList.add("active");
+    }
+});
+
+
+
 let formatRunning = false;
 
-buttonFormat.addEventListener('click', function() {
-    if (buttonFormat.classList.contains("active")) {
+submitButton.addEventListener('click', function() {
+    if (submitWrapper.classList.contains("active")) {
         formatRunning = true;
         formatDrives();
         formatRunning = false;
     }
 });
 
-
+cancelButton.addEventListener('click', function() {
+    submitWrapper.classList.remove("active");
+});
 
 // execute above functions every 1.5 seconds to update drive status without full page refresh
 setInterval(function () {
