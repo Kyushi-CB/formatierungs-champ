@@ -8,34 +8,18 @@ body {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    background-color: #111;
+    background-color: #1d1d1d;
+    color: #ffe;
     font-family: sans-serif;
 }
 
 /* GLOBAL */
 svg {
-    fill: #fff;
+    fill: #ffe;
 }
 ext-svg {
-    width: inherit;
-    height: inherit;
-}
-button {
-    width: 15vmin;
+    width: 100%;
     height: auto;
-    min-width: 150px;
-    max-width: 300px;
-    min-height: 150px;
-    max-height: 300px;
-    background: none;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    color: #fff;
-    margin: 1%;
 }
 
 /* //GLOBAL// */
@@ -46,39 +30,174 @@ button {
     width: 15vmin;
     min-width: 150px;
     max-width: 200px;
-    color: #fff;
+    color: #ffe;
     font-size: calc(8px + 0.2vmin);
+}
+.drives-load, .submit-wrapper {
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+  }
+.drives-load.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+#text-load, #text-notification {
+    font-size: calc(10px + 0.5vmin);
+    color: #ffe;
+    margin: 1%;
+}
+.submit-wrapper.active {
+    visibility: visible;
+    opacity: 1;
+}
+.submit-erase {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+    padding: 1%;
+    background-color: #333;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.submit-erase p {
+    text-align: center;
+    font-size: calc(10px + 0.5vmin);
+}
+.submit-field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+}
+#submit, #cancel {
+    width: 12vmin;
+    height: 3vmin;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 5%;
+    border: 1px solid #151515;
+    border-radius: 1vmin;
+    color: #ffe;
+    font-weight: bold;
+    text-shadow: #151515;
+    -webkit-border-radius: 1vmin;
+    -moz-border-radius: 1vmin;
+    -ms-border-radius: 1vmin;
+    -o-border-radius: 1vmin;
+    transition: all .1s ease-in-out;
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -ms-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+}
+#submit:hover, #cancel:hover {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transition: all .1s ease-in-out;
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -ms-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+}
+#submit {
+    background-color: #1c1;
+}
+#cancel {
+    background-color: #c11;
 }
 .wrapper-drives {
     min-width: 400px;
     min-height: 250px;
-    width: 90vw;
-    height: 50vh;
+    width: 100vw;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    align-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
     overflow: auto;
 }
-.wrapper-format {
-    position: absolute;
-    bottom: 0;
-    min-width: 100vw;
-    min-height: 100px;
-    width: 90vw;
+.drive {
+    width: 16vmin;
     height: auto;
+    min-width: 100px;
+    max-width: 250px;
+    min-height: 100px;
+    max-height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    color: #ffe;
+    margin: 2% 1%;
+    animation: driveFadeIn 0.3s linear;
+    -webkit-animation: driveFadeIn 0.3s linear;
+}
+.drive span {
+    width: 100%;
+    min-height: 10px;
+    max-height: 30px;
+    margin: 1% 0;
+    font-size: calc(10px + 0.3vmin);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+.wrapper-format {
+    position: absolute;
+    bottom: 0;
+    min-height: 200px;
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 #format-all {
     width: 20vmin;
     height: 20vmin;
-    min-width: 100px;
-    max-width: 200px;
-    min-height: 100px;
-    max-height: 200px;
+    min-width: 150px;
+    max-width: 300px;
+    min-height: 150px;
+    max-height: 300px;
+    border: none;
+    background: none;
     opacity: 0;
     cursor: not-allowed;
     transition: all .3s ease-in-out;
@@ -108,11 +227,11 @@ button {
     -o-transform: scale(1);
 }
 #format-all.active:hover {
-    transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
     transition: all .1s ease-in-out;
     -webkit-transition: all .1s ease-in-out;
     -moz-transition: all .1s ease-in-out;
@@ -129,10 +248,39 @@ button {
 /* //BASIC LAYOUT// */
 
 /* DYNAMIC CHANGES */
-.wrapper-drives button.error svg {
+.wrapper-drives .drive.error svg {
     fill: #c11;
 } 
 
-.wrapper-drives button.formatted svg {
+.wrapper-drives .drive.formatted svg {
     fill: #1c1;
 }
+
+/* ANIMATIONS */
+@keyframes driveFadeIn {
+    0% {
+        font-size: 0;
+        transform: scale(0);
+        opacity: 0;
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+}
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+        -webkit-transform: scale(1.15);
+        -moz-transform: scale(1.15);
+        -ms-transform: scale(1.15);
+        -o-transform: scale(1.15);
+}
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+}
+  }
