@@ -14,7 +14,7 @@ let textNotification = document.querySelector('#text-notification');
 // set text notifications
 const txtFormatting = "Secure Erase wird ausgeführt...";
 const txtNoDrives = "Es wurden keine Datenträger erkannt..."
-const txtDamaged = "Einer oder mehrere beschädigte Datenträger wurden gefunden und müssen entfernt werden.";
+const txtDamaged = "Es sind noch bereits formatierte oder fehlerhafte Datenträger verbunden. Secure Erase nicht möglich!";
 const txtDone = "Fertig! Die Datenträger können nun entfernt werden."
 
 // declare required arrays
@@ -77,6 +77,7 @@ async function loading() {
     if (drivesAvailable.length == 0) {
         drivesLoad.classList.add('visible');
         textLoad.textContent = txtNoDrives;
+        textNotification.textContent = "";
     }
 }
 
@@ -157,20 +158,17 @@ async function setDriveState() {
         getType[i].textContent = drives[i].Type;
         getIsFormatted[i].textContent = drives[i].Status;
         
-        if (getType[i].textContent == "N/A" || getName[i].textContent == "N/A") {
+        if (getName[i].textContent == "N/A") {
             drivesAvailable[i].classList.remove("formatted");
             drivesAvailable[i].classList.add("error");
-            textNotification.textContent = txtDamaged;
         }
         if (getIsFormatted[i].textContent == "Formatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A") {
             drivesAvailable[i].classList.add("formatted");
             drivesAvailable[i].classList.remove("error");
-            textNotification.textContent = txtDone;
         }
         if (getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A"){
             drivesAvailable[i].classList.remove("formatted");
-            drivesAvailable[i].classList.remove("error");
-            textNotification.textContent = "";  
+            drivesAvailable[i].classList.remove("error");  
         }
 
     }
@@ -187,10 +185,11 @@ async function setFormBtnState() {
     for (let i = 0; i < drivesAvailable.length; i++) {
         if (getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A") {
             formatButton.classList.add("active");
-            return;
         } 
         else {
             formatButton.classList.remove("active");
+            textNotification.textContent = txtDamaged;
+            return;
         }
 
     }
