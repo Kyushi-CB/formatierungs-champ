@@ -202,7 +202,6 @@ async function setState() {
     if (arrIsFormatted.includes("Formatiert") && arrIsFormatted.includes("Unformatiert")) {
         formatButton.classList.remove("active");
         textNotification.textContent = txtRemoveDone;
-        return;
     }
     if (arrIsFormatted.includes("Formatiert") && !arrIsFormatted.includes("Unformatiert")) {
         formatButton.classList.remove("active");
