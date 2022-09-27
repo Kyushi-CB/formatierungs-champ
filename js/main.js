@@ -14,8 +14,9 @@ let textNotification = document.querySelector('#text-notification');
 // set text notifications
 const txtFormatting = "Secure Erase wird ausgeführt...";
 const txtNoDrives = "Es wurden keine Datenträger erkannt..."
-const txtDamaged = "Es sind fehlerhafte Datenträger verbunden. Secure Erase nicht möglich!";
-const txtDone = "Fertig! Die Datenträger können nun entfernt werden."
+const txtDamaged = "Secure Erase nicht möglich! Es sind fehlerhafte Datenträger verbunden.";
+const txtDone = "Secure Erase abgeschlossen. Die Datenträger können nun entfernt werden."
+const txtRemoveDone = "Secure Erase nicht möglich! Es sind bereits Formatierte Datenträger verbunden."
 
 // declare required arrays
 let drives = []; 
@@ -61,7 +62,7 @@ async function handleDrives() {
         }
        createDrives();
     }
-    setFormBtnState();   
+    setState();   
 }
 
 async function loading() {
@@ -174,15 +175,25 @@ async function setDriveState() {
     }
 }
 
-async function setFormBtnState() {
+async function setState() {
     await setDriveState();
 
     let drivesAvailable = document.querySelectorAll('.wrapper-drives div');
     let getName = document.getElementsByClassName('drive-name');
     let getIsFormatted = document.getElementsByClassName('drive-is-formatted');
+    let arrName = [];
+    let arrIsFormatted = [];
+
+    if (drivesAvailable.length == 0) {
+        formatButton.classList.remove("active");
+        return;
+    }
 
     for (let i = 0; i < drivesAvailable.length; i++) {
-        if (getIsFormatted[i].textContent == "Formatiert" && getName[i].textContent != "N/A") {
+        arrName.push(getName[i].textContent);
+        arrIsFormatted.push(getIsFormatted[i].textContent);
+
+/*        if (getIsFormatted[i].textContent == "Formatiert" && getName[i].textContent != "N/A") {
             formatButton.classList.remove("active");
             textNotification.textContent = txtDone;
         }
@@ -195,12 +206,23 @@ async function setFormBtnState() {
             textNotification.textContent = txtDamaged;
             return;
         }
-
+        */
     }
-
-    if (drivesAvailable.length == 0) {
+    if (arrIsFormatted.includes("N/A") || arrName.includes("N/A")) {
         formatButton.classList.remove("active");
+        textNotification.textContent = txtDamaged;
+        return;
     }
+    if (arrIsFormatted.includes("Formatiert") && arrIsFormatted.includes("Unformatiert")) {
+        formatButton.classList.remove("active");
+        textNotification.textContent = txtRemoveDone;
+    }
+    if (arrIsFormatted.includes("Unformatiert")) {
+        formatButton.classList.add("active");
+        textNotification.textContent = txtDone;
+    }
+
+
 }
 
 function formatDrives() {
