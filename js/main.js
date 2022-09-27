@@ -192,22 +192,8 @@ async function setState() {
     for (let i = 0; i < drivesAvailable.length; i++) {
         arrName.push(getName[i].textContent);
         arrIsFormatted.push(getIsFormatted[i].textContent);
-
-/*        if (getIsFormatted[i].textContent == "Formatiert" && getName[i].textContent != "N/A") {
-            formatButton.classList.remove("active");
-            textNotification.textContent = txtDone;
-        }
-        if (getIsFormatted[i].textContent == "Unformatiert" && getName[i].textContent != "N/A") {
-            formatButton.classList.add("active");
-            textNotification.textContent = "";
-        } 
-        if (getIsFormatted[i].textContent == "N/A" || getName[i].textContent == "N/A") {
-            formatButton.classList.remove("active");
-            textNotification.textContent = txtDamaged;
-            return;
-        }
-        */
     }
+    
     if (arrIsFormatted.includes("N/A") || arrName.includes("N/A")) {
         formatButton.classList.remove("active");
         textNotification.textContent = txtDamaged;
