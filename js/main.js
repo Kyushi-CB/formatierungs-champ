@@ -14,7 +14,7 @@ let textNotification = document.querySelector('#text-notification');
 // set text notifications
 const txtFormatting = "Secure Erase wird ausgeführt...";
 const txtNoDrives = "Es wurden keine Datenträger erkannt..."
-const txtDamaged = "Es sind noch bereits formatierte oder fehlerhafte Datenträger verbunden. Secure Erase nicht möglich!";
+const txtDamaged = "Es sind fehlerhafte Datenträger verbunden. Secure Erase nicht möglich!";
 const txtDone = "Fertig! Die Datenträger können nun entfernt werden."
 
 // declare required arrays
@@ -183,10 +183,10 @@ async function setFormBtnState() {
     let getIsFormatted = document.getElementsByClassName('drive-is-formatted');
 
     for (let i = 0; i < drivesAvailable.length; i++) {
-        if (getIsFormatted[i].textContent == "Unformatiert" && getType[i].textContent != "N/A" && getName[i].textContent != "N/A") {
+        if (getIsFormatted[i].textContent == "Unformatiert" && getName[i].textContent != "N/A") {
             formatButton.classList.add("active");
         } 
-        else {
+        if (getIsFormatted[i].textContent == "N/A" || getName[i].textContent == "N/A") {
             formatButton.classList.remove("active");
             textNotification.textContent = txtDamaged;
             return;
