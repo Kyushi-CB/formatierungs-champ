@@ -204,9 +204,13 @@ async function setState() {
         textNotification.textContent = txtRemoveDone;
         return;
     }
-    if (arrIsFormatted.includes("Unformatiert")) {
-        formatButton.classList.add("active");
+    if (arrIsFormatted.includes("Formatiert") && !arrIsFormatted.includes("Unformatiert")) {
+        formatButton.classList.remove("active");
         textNotification.textContent = txtDone;
+    }
+    if (arrIsFormatted.includes("Unformatiert") && !arrIsFormatted.includes("Formatiert")) {
+        formatButton.classList.add("active");
+        textNotification.textContent = "";
     }
 
 
