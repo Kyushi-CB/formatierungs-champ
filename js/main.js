@@ -193,7 +193,7 @@ async function setState() {
         arrName.push(getName[i].textContent);
         arrIsFormatted.push(getIsFormatted[i].textContent);
     }
-    
+
     if (arrIsFormatted.includes("N/A") || arrName.includes("N/A")) {
         formatButton.classList.remove("active");
         textNotification.textContent = txtDamaged;
@@ -202,6 +202,7 @@ async function setState() {
     if (arrIsFormatted.includes("Formatiert") && arrIsFormatted.includes("Unformatiert")) {
         formatButton.classList.remove("active");
         textNotification.textContent = txtRemoveDone;
+        return;
     }
     if (arrIsFormatted.includes("Unformatiert")) {
         formatButton.classList.add("active");
