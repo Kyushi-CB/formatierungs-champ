@@ -178,13 +178,17 @@ async function setFormBtnState() {
     await setDriveState();
 
     let drivesAvailable = document.querySelectorAll('.wrapper-drives div');
-    let getType = document.getElementsByClassName('drive-type');
     let getName = document.getElementsByClassName('drive-name');
     let getIsFormatted = document.getElementsByClassName('drive-is-formatted');
 
     for (let i = 0; i < drivesAvailable.length; i++) {
+        if (getIsFormatted[i].textContent == "Formatiert" && getName[i].textContent != "N/A") {
+            formatButton.classList.remove("active");
+            textNotification.textContent = txtDone;
+        }
         if (getIsFormatted[i].textContent == "Unformatiert" && getName[i].textContent != "N/A") {
             formatButton.classList.add("active");
+            textNotification.textContent = "";
         } 
         if (getIsFormatted[i].textContent == "N/A" || getName[i].textContent == "N/A") {
             formatButton.classList.remove("active");
