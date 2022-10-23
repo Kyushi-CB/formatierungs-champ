@@ -1,5 +1,9 @@
 # Formatierungs Champ
 
+Bei diesem Tool handelt es sich um einen Software Stack aus verschiedenen,
+zum Teil Linux eigenen Formatierungs und Partitionierungstools,
+welche lokal über den Browser gesteuert werden.
+
 Der "Formatierungs Champ" vereinfacht und automatisiert das Low-Level-Formatieren von Datenträgern.
 
 ## Index
@@ -22,16 +26,18 @@ zuerst den Status des Datenträgers überprüfen und danach den Secure Erase per
 Das dauert :/
 
 Diese Software automatisiert diesen Prozess und liefert alle relevanten Daten, übersichtlich an ein lokales Web-Frontend.
-Wenn die Datenträger erkannt, auf Fehler überprüft und der Formatierungsstatus ausgelesen wurde, kann man mit einem Klick auf den "Formatieren" Button,
+Wenn die Datenträger erkannt, auf Fehler überprüft und der Formatierungsstatus ausgelesen wurde, kann man mit einem Klick auf die "Formatieren" Schaltfläche,
 den Secure Erase anstoßen.
 
-**In diesem Guide wird Raspbian in der 64bit Version mit GUI als OS benutzt.**
-Andere Linux Distributionen wurden nicht getestet, sollten aber auch funktionieren.
+**In diesem Guide wird Raspbian in der 64bit Version mit LXDE GUI als OS benutzt.**
+... andere Distributionen wurden bisher nicht getestet, sollten aber, solange sie auf Debian basieren, ebenfalls funktionieren.
+Da der Formatierungs Champ im Hintergrund mit Linux-Befehlen arbeitet, ist er NICHT mit Windows kompatibel.
 
-**Folgende Sprachen und Programme werden benutzt:**
+**Folgende Sprachen, Programme und Befehle werden benutzt:**
 - hdparm
 - Parted
 - Apache2
+- unclutter (nur im Kiosk mode)
 - Chromium
 - PHP
 - Javascript
@@ -39,6 +45,8 @@ Andere Linux Distributionen wurden nicht getestet, sollten aber auch funktionier
 - CSS
 - GIT
 - Bash
+- sudo
+- apt
 
 Dreh -und Angelpunkt ist hier PHP. Im Backend werden alle nötigen Shell-Befehle ausgeführt und die darüber gesammelten Daten aufbereitet,
 verarbeitet und an das Frontend übergeben.
@@ -57,7 +65,7 @@ verarbeitet und an das Frontend übergeben.
 
 ## Vorbereitungen
 
-In diesem Beispiel setze ich die Formatierungsstation auf einem Raspberry Pi 4 Model B auf.
+In diesem Beispiel setze ich die Formatierungsstation auf einem Raspberry Pi 4 Model B - Raspbian 64bit (Debian11 "Bullseye") LXDE-Core GUI, auf.
 
 **Es wird benötigt:**
 - ein Raspberry Pi 4 oder ein PC mit vergleichbaren oder besseren Spezifikationen
@@ -65,15 +73,10 @@ In diesem Beispiel setze ich die Formatierungsstation auf einem Raspberry Pi 4 M
 - diverse Adapter für benötigte Schnittstellen z.B. S-ata -> USB 3.0 oder im Desktopbereich PCI-E Adapterkarten
 - ein Display zum anzeigen und steuern der Formatierungsstation
 - Maus und Tastatur (Falls ein Touchdisplay verwendet wird, kann auf Maus und Tastatur verzichtet werden)
-- Debian, Raspbian oder eine vergleichbare Distribution mit Grafischer Oberfläche
+- Debian, Raspbian, Ubuntu oder eine vergleichbare Distribution auf Debian Basis, mit Grafischer Oberfläche
 - sudo-root Rechte werden benötigt
 
-## Deployment
-
-Bevor es losgeht, werden wie immer zuerst die Paketquellen aktualisiert.
-``` bash
-sudo apt update && sudo apt upgrade -y
-```
+## Deployment mit Script
 
 Das Setup kann mit dem deploy.sh Script durchgeführt werden.
 ``` bash
@@ -87,15 +90,32 @@ sudo chmod +x deploy.sh
 
 Jetzt kann es ausgeführt werden.
 ``` bash
-./deploy.sh
+sudo ./deploy.sh
 ```
-Nachdem das Script durchgelaufen ist, startet sich das System neu und man wird von einem Chromium
-im Kioskmode begrüßt, in dem nun der Formatierungs Champ laufen sollte.
+
+#### Installation als Kiosk
+
+Wenn hier mit Ja gantwortet wird ist folgendes zu beachten:
+``` bash
+Soll das Gerät als Kiosk eingerichtet werden? (Ja/Nein):
+```
+
+Damit die Konfiguration als Kiosk reibungslos funktioniert, muss sichergestellt werden, dass:
+- LXDE als GUI verwendet wird
+
+Falls GNOME, KDE oder ein anderes GUI verwendet wird, muss ggf. folgendes händisch angepasst werden:
+- der neu erstellte user "Kiosk" muss im autostart der GUI hinterlegt werden
+- unclutter muss für die GUI konfiguriert und im autostart der GUI hinterlegt werden
+
+Nachdem das Script durchgelaufen ist, startet sich das System neu.
+Die Oberfläche der Formatierungsstation kann nun im Browser unter localhost bzw. http://127.0.0.1 aufgerufen werden.
+
+Wenn das System als Kiosk konfiguriert wurde,
+wird man automatisch als user "Kiosk" angemeldet und Chromium startet sich automatisch im Kiosk-Mode
 
 #### Wichtig!
-Es wurde ein neuer User "kiosk" vom Script angelegt.
-Dieser darf nicht gelöscht oder umbenannt werden,
-da das backend über diesen User Shell-Commands ausführt.
+Der "www-data" user, welcher von apache2 und php genutzt wird hat für einige benötigte Befehle sudo Rechte erhalten! 
+Es wird davon abgeraten ports, von denen auf den Apache2-Server, zugegriffen werden kann in Internet freizugeben!
 
 ## Formatieren
 Sobald ein Datenträger erkannt wurde unter /dev/sd* oder /dev/nvme* wird er im Browser angezeigt.
