@@ -8,12 +8,15 @@ Der "Formatierungs Champ" vereinfacht und automatisiert das Low-Level-Formatiere
 
 ## Index
 
-1. [Funktionsweise](#funktionsweise)
-2. [Features](#features) 
-3. [Vorbereitungen](#vorbereitungen)
-4. [Deployment](#deployment)
-5. [Formatieren](#formatieren)
-6. [Lizenz](#lizenz)
+- [Formatierungs Champ](#formatierungs-champ)
+  - [Index](#index)
+  - [Funktionsweise](#funktionsweise)
+  - [Features](#features)
+  - [Vorbereitungen](#vorbereitungen)
+  - [Deployment mit Script](#deployment-mit-script)
+    - [Installation als Kiosk](#installation-als-kiosk)
+  - [Formatieren](#formatieren)
+  - [License](#license)
 
 ## Funktionsweise
 
@@ -93,7 +96,7 @@ Jetzt kann es ausgeführt werden.
 sudo ./deploy.sh
 ```
 
-#### Installation als Kiosk
+### Installation als Kiosk
 
 Wenn hier mit Ja gantwortet wird ist folgendes zu beachten:
 ``` bash
@@ -113,7 +116,7 @@ Die Oberfläche der Formatierungsstation kann nun im Browser unter localhost bzw
 Wenn das System als Kiosk konfiguriert wurde,
 wird man automatisch als user "Kiosk" angemeldet und Chromium startet sich automatisch im Kiosk-Mode
 
-#### Wichtig!
+**Wichtig!**
 Der "www-data" user, welcher von apache2 und php genutzt wird hat für einige benötigte Befehle sudo Rechte erhalten! 
 Es wird davon abgeraten ports, von denen auf den Apache2-Server, zugegriffen werden kann in Internet freizugeben!
 
@@ -130,11 +133,11 @@ in diesem Fall kann man von einem Hardwaredefekt ausgehen. Der Datenträger kann
 Wenn auf dem Datenträger eine Partitionstabelle erkannt wird, bleibt das Icon weiß und der Formatierungsstatus ändert sich auf "Unformatiert".
 Der Formatierungsbutton färbt sich grün. Mit einem klick auf diesen und mit anschließender Bestätigung startet der Formatierungsprozess.
 Wie oben erwähnt, kann das bei HDDs mehrere Stunden dauern.
-#### Achtung!
+**Achtung!**
 Der Formatierungsprozess darf unter keinen Umständen unterbrochen werden, da dies den Datenträger irreparabel beschädigen kann.
 
 Sobald der Formatierungsprozess abgeschlossen ist, sollte sich das Icon grün färben.
 Der Datenträger kann jetzt entfernt werden.
 
-### License
+## License
 [GNU General Public License v.3.0](https://github.com/Kyushi-CB/formatierungs-champ/master/LICENSE.md)
