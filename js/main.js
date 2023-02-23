@@ -219,7 +219,7 @@ function formatDrives() {
     drivesLoad.classList.add('visible');
     textLoad.textContent = txtFormatting;
     let xhr = new XMLHttpRequest();
-    xhr.open('POST','./backend/format-drives.php',true);
+    xhr.open('POST','./backend/get-drives.php',true);
     xhr.onload = function() {
         drivesLoad.classList.remove('visible');
         textLoad = "";
